@@ -21,23 +21,6 @@ import java.util.OptionalInt;
 @RequestMapping("/api/")
 public class IOMRequestController {
 
-//    @Autowired
-//    private IOMRequestService iomRequestService;
-//
-//    @PostMapping("iom-create")
-//    public ResponseEntity<?> createIomRequest(@RequestBody IOMRequestDto iomRequestDto){
-//
-//        IOMRequestMaster iomRequest = iomRequestService.createIOMRequest(iomRequestDto);
-//
-//        ApiResponse<Object> iomReuest = ApiResponse.builder()
-//                .status(HttpStatus.OK.value())
-//                .message("IOM request created successfully")
-//                .data(Collections.emptyList())
-//                .build();
-//
-//        return ResponseEntity.ok(iomReuest);
-
-
     @Autowired
     IomRequestRepository iomRequestRepository;
 
