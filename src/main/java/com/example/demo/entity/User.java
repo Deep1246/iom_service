@@ -29,8 +29,11 @@ public class User {
     private String passwordHash;
 
     @ManyToOne
-    @JoinColumn(name = "manager_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_manager"))
+    @JoinColumn(name = "manager_id")
     private User manager;
+
+    @Column(name = "role_name", nullable = false, length = 100)
+    private String roleName;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.ApiResponse;
 import com.example.demo.dto.IOMRequestDto;
+import com.example.demo.dto.WorkflowActionDto;
 import com.example.demo.entity.IOMRequestMaster;
 import com.example.demo.repository.IomRequestRepository;
 import com.example.demo.service.IOMRequestService;
@@ -37,5 +38,11 @@ public class IOMRequestController {
         return ResponseEntity.ok(res.getAsInt());
 
     }
+
+//    @PostMapping("workflow-action")
+//    public ResponseEntity<?> approveWorkflow(@RequestBody WorkflowActionDto workflowActionDto){
+//
+//        return ResponseEntity.ok();
+//    }
 
 }

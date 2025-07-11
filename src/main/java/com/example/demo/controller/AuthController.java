@@ -44,7 +44,7 @@ public class AuthController {
                     .id(user.getId())
                     .email(user.getEmail())
                     .userName(user.getName())
-                    .role("Associate")
+                    .role(user.getRoleName())
                     .build();
 
             ApiResponse success = ApiResponse.builder()
