@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -46,5 +47,17 @@ public class RequestsController {
         }
     }
 
+
+    @PostMapping("/update/{id}")
+    public ResponseEntity<?> updateData(@PathVariable int id, @RequestBody Requests data) {
+
+        boolean success = requestsService.updateData(id,data);
+
+        if(success){
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.badRequest().build();
+
+    }
 
 }
