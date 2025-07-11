@@ -29,7 +29,7 @@ public class IOMRequestController {
         ApiResponse<Object> iomReuest = ApiResponse.builder()
                 .status(HttpStatus.OK.value())
                 .message("IOM request created successfully")
-                .data(Collections.emptyList())
+                .data(Collections.singletonMap("imo_req_id",iomRequest.getId()))
                 .build();
 
         return ResponseEntity.ok(iomReuest);

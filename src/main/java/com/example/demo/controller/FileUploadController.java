@@ -4,6 +4,7 @@ import com.example.demo.dto.ApiResponse;
 import com.example.demo.service.FileStorageService;
 import org.hibernate.sql.ast.tree.expression.Collation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,9 +21,9 @@ public class FileUploadController {
     private FileStorageService fileStorageService;
 
     @PostMapping("/upload")
-    public ResponseEntity<?> uploadFiles(@RequestParam("files") MultipartFile[] files) {
+    public ResponseEntity<?> uploadFiles(@RequestParam("files") MultipartFile[] files,@Param("iom_id") Long imoRequestId) {
         try {
-            fileStorageService.storeFiles(files);
+            fileStorageService.storeFiles(files,imoRequestId);
 
             ApiResponse<Object> build = ApiResponse.builder()
                     .message("Files uploaded successfully.")
