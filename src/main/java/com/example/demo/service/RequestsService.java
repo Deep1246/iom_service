@@ -5,6 +5,7 @@ import com.example.demo.repository.RequestsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -72,5 +73,72 @@ public class RequestsService {
 
     private boolean isPresent(String value) {
         return value != null && !value.trim().isEmpty();
+    }
+
+    public int insertFromMap(Map<String, Object> record) {
+        Requests req = new Requests();
+
+        ifPresent(record, "title", req::setTitle);
+        ifPresent(record, "category", req::setCategory);
+        ifPresent(record, "sub_category", req::setSubCategory);
+        ifPresent(record, "description", req::setDescription);
+        ifPresentInt(record, "requester_id", req::setRequesterId);
+        ifPresent(record, "stage_id", req::setStageId);
+
+        ifPresent(record, "contractparty", req::setContractParty);
+        ifPresent(record, "briefdescription", req::setBriefDescription);
+        ifPresent(record, "annexure", req::setAnnexure);
+        ifPresent(record, "costcenter", req::setCostCenter);
+        ifPresent(record, "subcostcenter", req::setSubCostCenter);
+        ifPresent(record, "scopeofwork", req::setScopeOfWork);
+        ifPresent(record, "recommendationandrationale", req::setRecommendationAndRationale);
+        ifPresent(record, "initiatedby", req::setInitiatedBy);
+        ifPresent(record, "reviewedby", req::setReviewedBy);
+        ifPresent(record, "approvedby", req::setApprovedBy);
+        ifPresent(record, "form_type", req::setFormType);
+
+        // Hardware
+        ifPresent(record, "date", req::setDate);
+        ifPresent(record, "ordervalue", req::setOrderValue);
+        ifPresent(record, "l1name", req::setL1Name);
+        ifPresent(record, "l2name", req::setL2Name);
+        ifPresent(record, "l3name", req::setL3Name);
+        ifPresent(record, "l1price", req::setL1Price);
+        ifPresent(record, "l2price", req::setL2Price);
+        ifPresent(record, "l3price", req::setL3Price);
+        ifPresent(record, "l1total", req::setL1Total);
+        ifPresent(record, "l2total", req::setL2Total);
+        ifPresent(record, "l3total", req::setL3Total);
+
+        // Software
+        ifPresent(record, "amount", req::setAmount);
+        ifPresent(record, "contractperiod", req::setContractPeriod);
+        ifPresent(record, "budgeted", req::setBudgeted);
+        ifPresent(record, "comparativecostanalysis", req::setComparativeCostAnalysis);
+        ifPresent(record, "roleinitiated", req::setRoleInitiated);
+        ifPresent(record, "tolereview", req::setToleReview);
+        ifPresent(record, "roleapprove", req::setRoleApprove);
+        ifPresent(record, "cmc", req::setCmc);
+        ifPresent(record, "rmc", req::setRmc);
+        ifPresent(record, "tmc", req::setTmc);
+        ifPresent(record, "selectedvendor", req::setSelectedVendor);
+
+        return requestsRepository.save(req).getRequestId().intValue();
+    }
+
+    private void ifPresent(Map<String, Object> map, String key, java.util.function.Consumer<String> setter) {
+        Object value = map.get(key);
+        if (value != null) {
+            setter.accept(value.toString());
+        }
+    }
+
+    private void ifPresentInt(Map<String, Object> map, String key, java.util.function.IntConsumer setter) {
+        Object value = map.get(key);
+        if (value != null) {
+            try {
+                setter.accept(Integer.parseInt(value.toString()));
+            } catch (NumberFormatException ignored) {}
+        }
     }
 }

@@ -60,4 +60,10 @@ public class RequestsController {
 
     }
 
+    @PostMapping("/new")
+    public ResponseEntity<?> insertRequest(@RequestBody Map<String, Object> record) {
+        int id = requestsService.insertFromMap(record);
+        return ResponseEntity.ok(Map.of("request_id", id));
+    }
+
 }
