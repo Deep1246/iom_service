@@ -66,4 +66,11 @@ public class RequestsController {
         return ResponseEntity.ok(Map.of("request_id", id));
     }
 
+
+    @GetMapping("/getAll")
+    public ResponseEntity<?> getAll() {
+        var res = requestsService.getAll();
+        return ResponseEntity.ok(res);
+    }
+
 }

@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface RequestsRepository extends JpaRepository<Requests, Integer> {
     Optional<Requests> findByRequestId(Integer requestId);
+    Optional<Requests> getAllByRequesterId(Integer requestId);
 }

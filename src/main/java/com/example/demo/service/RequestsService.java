@@ -5,6 +5,7 @@ import com.example.demo.repository.RequestsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -16,6 +17,10 @@ public class RequestsService {
 
     public Optional<Requests> findRequestById(int id) {
        return requestsRepository.findById(id);
+    }
+
+    public List<Requests> getAll() {
+        return requestsRepository.findAll();
     }
 
     public boolean updateData(int id, Requests input) {
@@ -141,4 +146,7 @@ public class RequestsService {
             } catch (NumberFormatException ignored) {}
         }
     }
+
+
+
 }
